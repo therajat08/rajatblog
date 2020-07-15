@@ -16,6 +16,12 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+	  {
+		resolve: `gatsby-plugin-react-helmet-canonical-urls`,
+		options: {
+			siteUrl: `https://www.thewebdev.com`,
+		  },
+	  },
     `gatsby-plugin-feed-mdx`,
     {
       resolve: `gatsby-source-filesystem`,
