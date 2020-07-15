@@ -86,7 +86,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
-		  canonical: "https://your-original-blog.com/post-goes-here
+		canonical
       }
     }
   }
