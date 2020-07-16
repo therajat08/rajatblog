@@ -1,12 +1,12 @@
 module.exports = {
   siteMetadata: {
     // edit below
-    title: `Gatsby Starter Personal Blog`,
-    author: `Gatsby`,
-    description: `A starter personal blog with styled components, dark mode, and Netlify CMS.`,
+    title: `Personal Blog Rajat Negi`,
+    author: `Rajat Negi`,
+    description: `new blog where i share my learning experience`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
     social: {
-      twitter: `gatsbyjs`,
+      twitter: `rajat_naegi`,
     },
   },
   plugins: [
@@ -55,7 +55,7 @@ module.exports = {
             },
           },
           {
-            resolve: `gatsby-remark-vscode`,
+            resolve: `gatsby-remark-vscode`,// plugin for vscode style highlighting
           },
           {
             resolve: `gatsby-remark-copy-linked-files`,
