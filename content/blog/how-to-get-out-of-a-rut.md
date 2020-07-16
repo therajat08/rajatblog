@@ -1,6 +1,6 @@
 ---
 path: post-1
-date: 2020-07-15T12:10:48.053Z
+date: 2020-03-18T12:10:48.053Z
 title: How to get out of a Rut?
 description: get going
 ---
