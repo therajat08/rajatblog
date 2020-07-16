@@ -40,7 +40,7 @@ Output:
 
 ### Understanding and Using State
 
-Before this, we hard-coded the info. We can change this by using state. **State** is a special property of a component. Normally, we can only define the state if it is a class-based component (not function-based). However, with **Hooks**, this changes. Still, we should make our components with function more often. This is because using state in a large application in every component makes it difficult to manage. In this special property of our component, if a value changes our `render()` method is also triggered again.\
+Before this, we hard-coded the info. We can change this by using state. **State** is a special property of a component. Normally, we can only define the state if it is a class-based component (not function-based). However, with **Hooks**, this changes. Still, we should make our components with function more often. This is because using state in a large application in every component makes it difficult to manage. In this special property of our component, if a value changes our `render()` method is also triggered again.
 If we make the following changes to App.js, the result will be same as before:
 
 
@@ -69,7 +69,7 @@ class App extends Component{
 
 ### Handling Events with Methods
 
-We added a button to our code before. To handle its event, we will use a method to our class. Note after making this function, do not add `()` . Because we only want to pass the reference of our function and not let render function execute it.\
+We added a button to our code before. To handle its event, we will use a method to our class. Note after making this function, do not add `()` . Because we only want to pass the reference of our function and not let render function execute it.
 code changes made:
 
 ```javascript
@@ -88,14 +88,14 @@ switchNameHandler = () =>{
       );
 ```
 
-\
+
 Output:
 
 ![](https://cdn-images-1.medium.com/max/800/1*8Ejy4v1GKOxiGQvFaf0eLw.gif)
 
-**Manipulating state upon click**\
-Now to manipulate state, we will use `this` Keyword. Note that, this will only work as intended if we are using ES6 function implementation of the component. Otherwise, `this` won’t refer to our class.\
-Now we can’t directly change state using `this.state.food[2].name = ‘Grape’`, as react won’t pick it up. Instead, we will use `setState` which is predefined in React library.\
+**Manipulating state upon click**
+Now to manipulate state, we will use `this` Keyword. Note that, this will only work as intended if we are using ES6 function implementation of the component. Otherwise, `this` won’t refer to our class.
+Now we can’t directly change state using `this.state.food[2].name = ‘Grape’`, as react won’t pick it up. Instead, we will use `setState` which is predefined in React library.
 This method won’t discard values other than changed ones(if defined). But will instead merge overridden ones with them. There aren’t many things that make changes to DOM. Only two will have effects:
 
 * changing state
