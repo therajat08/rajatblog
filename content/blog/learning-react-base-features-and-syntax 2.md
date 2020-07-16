@@ -72,7 +72,7 @@ class App extends Component{
 We added a button to our code before. To handle its event, we will use a method to our class. Note after making this function, do not add `()` . Because we only want to pass the reference of our function and not let render function execute it.\
 code changes made:
 
-```
+```javascript
 switchNameHandler = () =>{
         console.log('was clicked');
     }
