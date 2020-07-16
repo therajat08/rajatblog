@@ -1,7 +1,7 @@
 ---
 path: React-series
 date: 2020-07-16T12:30:52.985Z
-title: "Learning React : : Base Features and Syntax 2"
+title: "Learning React  : Base Features and Syntax 2"
 description: We continue with third module
 ---
 ### Understanding children property
