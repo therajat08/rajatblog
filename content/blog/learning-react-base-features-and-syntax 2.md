@@ -2,6 +2,7 @@
 path: react-series/learn-react-4
 date: 2020-07-16T15:18:31.860Z
 title: "Learning React: Base Features and Syntax 2"
+canonical: https://thewebdev.tech/react-tutorials-4
 description: series continue
 ---
 ### Understanding children property

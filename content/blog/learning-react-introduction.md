@@ -2,6 +2,7 @@
 path: react-series/1
 date: 2020-07-05T16:35:16.303Z
 title: "Learning React : Introduction"
+canonical: https://thewebdev.tech/react-tutorials-1
 description: Beginning my react journey with udemy course
 ---
 Here I am beginning my react journey. I have chosen a course on Udemy by [Maximilian Schwarzmüller](twitter/com/@maxedapps).

@@ -2,6 +2,7 @@
 path: react-series/2
 date: 2020-07-07T16:41:11.555Z
 title: "Learning React : JS refresher "
+canonical: https://thewebdev.tech/react-tutorials-2
 description: In this i learn about the basic JS concepts that will be used consistently.
 ---
 React uses the most recent version of javascript. If someone already knows this, they should skip this part. 

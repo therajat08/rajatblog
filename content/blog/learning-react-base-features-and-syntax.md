@@ -2,6 +2,7 @@
 path: react-series/3
 date: 2020-07-10T16:46:17.220Z
 title: "Learning React : Base Features and Syntax"
+canonical: https://thewebdev.tech/react-tutorials-3
 description: Here i learn about the basics of components and react syntax.
 ---
 To get started with building a project follow the steps on [this link](https://github.com/facebook/create-react-app).
