@@ -15,6 +15,13 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // replace "UA-169377140-1" with your own Tracking ID
+        trackingId: "UA-169377140-1",
+      },
+    },
     `gatsby-plugin-react-helmet`,
 	  {
 		resolve: `gatsby-plugin-react-helmet-canonical-urls`,
