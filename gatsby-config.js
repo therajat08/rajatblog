@@ -4,7 +4,7 @@ module.exports = {
     title: `Personal Blog Rajat Negi`,
     author: `Rajat Negi`,
     description: `new blog where i share my learning experience`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://rajatblog.netlify.app`,
     social: {
       twitter: `rajat_naegi`,
     },
@@ -15,6 +15,15 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-offline`,
+    {
+    resolve: `gatsby-plugin-nprogress`,
+    options: {
+      // Setting a color is optional.
+      color: `tomato`,
+      // Disable the loading spinner.
+      showSpinner: true,
+      },
+    },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
