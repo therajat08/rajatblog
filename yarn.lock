@@ -6462,7 +6462,7 @@ gatsby-plugin-feed-mdx@^1.0.0:
     lodash.merge "^4.6.2"
     rss "^1.2.2"
 
-gatsby-plugin-google-analytics@^2.0.18:
+gatsby-plugin-google-analytics@^2.3.11:
   version "2.3.11"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-2.3.11.tgz#201769a27ae9ca5852c25af004d83635ef1e1f14"
   integrity sha512-4ktlF13r/o2cFf6EBcwlKwl0lNedVUjGpk8MJFZM6h54QIflwBxDXVS5ku8YrZ/2VfhY+7+pVS5U0yluYj8iYg==
@@ -6535,6 +6535,14 @@ gatsby-plugin-netlify-cms@^4.3.7:
     mini-css-extract-plugin "^0.8.2"
     netlify-identity-widget "^1.6.0"
     webpack "^4.43.0"
+
+gatsby-plugin-nprogress@^2.3.10:
+  version "2.3.10"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-nprogress/-/gatsby-plugin-nprogress-2.3.10.tgz#58d8134550d4940b8ffa87445e1dd6a8dca67e56"
+  integrity sha512-iB20T8gLp4l1Zi+/ji6WDttIIvw160jwJmlQNYKxxPCe3+koBzQ9TZgxMJqI4uT5gXACpRIQx7c9Sg1YMJ3Mzg==
+  dependencies:
+    "@babel/runtime" "^7.10.3"
+    nprogress "^0.2.0"
 
 gatsby-plugin-offline@^2.0.25:
   version "2.2.10"
@@ -10704,6 +10712,11 @@ npmlog@^4.0.1, npmlog@^4.1.2:
     console-control-strings "~1.1.0"
     gauge "~2.7.3"
     set-blocking "~2.0.0"
+
+nprogress@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/nprogress/-/nprogress-0.2.0.tgz#cb8f34c53213d895723fcbab907e9422adbcafb1"
+  integrity sha1-y480xTIT2JVyP8urkH6UIq28r7E=
 
 nth-check@^1.0.1, nth-check@^1.0.2, nth-check@~1.0.1:
   version "1.0.2"
