@@ -15,6 +15,16 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-offline`,
+    // {
+    //   resolve: `gatsby-transformer-remark`,
+    //   options: {
+    //     plugins: [
+    //       `gatsby-remark-reading-time`,
+    //       // ...
+    //     ],
+    //   },
+    // },
+    'gatsby-remark-reading-time',
     {
     resolve: `gatsby-plugin-nprogress`,
     options: {
