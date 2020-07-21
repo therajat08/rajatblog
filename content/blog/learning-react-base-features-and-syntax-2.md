@@ -6,7 +6,7 @@ canonical: https://thewebdev.tech/react-tutorials-4
 ---
 ### Understanding children property
 
-Last we learnt how to pass values to our component using props. We can do this in another way. We can give simple text or HTML between opening and closing tags of our components in our **App.js**. To access this we use `props.children` in **Food.js**.
+In the last article, we learnt how to pass values to our component using props. We can do this in another way. We can give simple text or HTML between opening and closing tags of our components in our **App.js**. To access this we use `props.children` in **Food.js**.
 
 ```javascript
 // App.js
@@ -40,7 +40,7 @@ Output:
 
 ### Understanding and Using State
 
-Before this, we hard-coded the info. We can change this by using state. **State** is a special property of a component. Normally, we can only define the state if it is a class-based component (not function-based). However, with **Hooks**, this changes. Still, we should make our components with function more often. This is because using state in a large application in every component makes it difficult to manage. In this special property of our component, if a value changes our `render()` method is also triggered again.
+Previously, we have hard coded the info we intend to display. But this won't be the case in most situaions. So, we can change this behaviour by using states. **State** is a special property of a component. Normally, we can only define the state if it is a class-based component (not function-based). However, with **Hooks**, this changes. Still, we should make our components with function more often. This is because using state in a large application in every component makes it difficult to manage. In this special property of our component, if a value changes our `render()` method is also triggered again.
 If we make the following changes to App.js, the result will be same as before:
 
 
@@ -73,7 +73,7 @@ We added a button to our code before. To handle its event, we will use a method 
 code changes made:
 
 ```diff
-+switchNameHandler = () =>{
++ switchNameHandler = () =>{
 +        console.log('was clicked');
 +    }
   render(){
@@ -124,7 +124,7 @@ Our components can be stateful or stateless. We can make stateful components usi
 It is a better practice to use as many stateless components. This is because it makes it easier to maintain our app.
 
 ## Passing Method Reference Between components
-We can pass method references between components. Let's define a property click on the second instance of our food component.We pass a reference to `switcNameHandler` to this property. And in Food.js, we define `onClick={props.click}` Now let's say our function the `switchNameHandler` requires an argument. There are two ways of handling this event. One by using `bind`. And another is by using arrow function. However, it is recommended to use bind more.
+We can pass method references between components. Let's define a property click on the second instance of our food component.We pass a reference to `switchNameHandler` to this property. And in Food.js, we define `onClick={props.click}` Now let's say our function the `switchNameHandler` requires an argument. There are two ways of handling this event. One by using `bind`. And another is by using arrow function. However, it is recommended to use bind more.
 
 Now our functions is triggered by clicking the button and by clicking the second food component. 
 
@@ -170,48 +170,47 @@ Output:
 
 ## Adding two way Binding
 
-Now lets add a text filed and try to handle the input given by the user. To handle the event we create `nameChangeHandler` it takes an **event** object as an argument. We change the state by using `event.target.value`. Using this text field we will change the name of our food. Also if we want the previous name to come up in textfield already we willl use `props.name` in Food.js. 
+Now lets add a text filed and try to handle the input given by the user. To handle the event we create `nameChangeHandler` it takes an **event** object as an argument. We change the state by using `event.target.value`. Using this text field we will change the name of our food. Also if we want the textfield to contain some value by default we will use `value=props.name` in Food.js. 
 
 Food.js changes:
 ```diff
-<div>
-		<p onClick={props.click}>Some nutritional information! of food: {props.name} containing vitamin {props.vitamin} </p>
-		<p>{props.children}</p>
-+		<input type="text" onChange={props.changed} value={props.name}/>
-</div>
+  <div>
+    <p onClick={props.click}>Some nutritional information! of food: {props.name} containing vitamin {props.vitamin} </p>
+    <p>{props.children}</p>
++   <input type="text" onChange={props.changed} value={props.name}/>
+  </div>
 ```
 App.js:
 ```diff
++ nameChangedHandler = (event) => {
++  this.setState({
++  food :[
++    {name: 'Orange', vitamin: 'C'},	
++    {name: event.target.value, vitamin: 'B6'},	
++    {name: 'Lemon', vitamin: 'C'}	
++   ]
++  })
++  }
+  render(){
+    return (
+      <div className="App">
+        <h1>This message is shown in browser. </h1>
+        <button onClick={() => this.switchNameHandler('Raspberry')}>Switch </button>
 
-+	nameChangedHandler = (event) => {
-+		this.setState({
-+		food :[
-+			{name: 'Orange', vitamin: 'C'},	
-+			{name: event.target.value, vitamin: 'B6'},	
-+			{name: 'Lemon', vitamin: 'C'}	
-+		]
-+		})
-+	}
-	render(){
-		return (
-			<div className="App">
-				<h1>This message is shown in browser. </h1>
-				<button onClick={() => this.switchNameHandler('Raspberry')}>Switch </button>
-
-				<Food 
-					name={this.state.food[0].name} 
-					vitamin={this.state.food[0].vitamin}>Its orange in color</Food>
-				<Food 
-					name = {this.state.food[1].name}
-					vitamin = {this.state.food[1].vitamin}
-					click={this.switchNameHandler.bind(this,'Apple')}
-+					changed={this.nameChangedHandler}>Its yellow in color</Food>	
-					
-				<Food 
-					name = {this.state.food[2].name} 
-					vitamin = {this.state.food[2].vitamin}>Its green in color</Food> 	
-			</div>
-		);
+        <Food 
+          name={this.state.food[0].name} 
+          vitamin={this.state.food[0].vitamin}>Its orange in color</Food>
+        <Food 
+          name = {this.state.food[1].name}
+          vitamin = {this.state.food[1].vitamin}
+          click={this.switchNameHandler.bind(this,'Apple')}
++         changed={this.nameChangedHandler}>Its yellow in color</Food>	
+          
+        <Food 
+          name = {this.state.food[2].name} 
+          vitamin = {this.state.food[2].vitamin}>Its green in color</Food> 	
+      </div>
+    );
 ```
 Note that we are only using nameChangleHandler for second food tag. So only its value will change.
 
@@ -238,25 +237,25 @@ Output:
 ![](https://ik.imagekit.io/18dkv5g43j/React_udemy/3/css_eLB2cqzxQ.png)
 
 ## Using Inline styles
-We can style our elements by giving inline css in the js file only. The way of writing css is a bit different. Like we have to write css property with camel-case. And also give the values in quotes. As it is all taken as string. There are certain restrictions to using css this way. Like using **hover** property isn't easy to impliment. 
+We can style our elements by giving inline css in the js file only. The way of writing css is a bit different. Like we have to write css property with camel-case. And also give the values in quotes. As it is all taken as string. There are certain restrictions to using css this way. Like using **hover** property isn't easy to implement. 
 
 We give inline css in **App.js**, and add some styling to the button:
 
 ```diff
-+	render(){
-+		const style = {
-+			backgroundColor: 'green',
-+			font: 'inherit',
-+			border: '1px solid blue',
-+			padding: '8px',
-+			cursor: 'pointer'
-+		};
-		return (
-			<div className="App">
-				<h1>This message is shown in browser. </h1>
-				<button 
-+				style = {style}
-				onClick={() => this.switchNameHandler('Raspberry')}>Switch </button>
++  render(){
++    const style = {
++      backgroundColor: 'green',
++      font: 'inherit',
++      border: '1px solid blue',
++      padding: '8px',
++      cursor: 'pointer'
++  };
+   return (
+    <div className="App">
+      <h1>This message is shown in browser. </h1>
+      <button 
++     style = {style}
+      onClick={() => this.switchNameHandler('Raspberry')}>Switch </button>
 ```
 
 output:
