@@ -227,5 +227,9 @@ Code changed:
         );
       }
 ```
+ Output:
+ ![](https://ik.imagekit.io/18dkv5g43j/React_udemy/4/namechangehandler_YcVmeaVRJ.gif)
+
 ## What we learned 
   - handling data more dynamically using list
+  - using map() to map our js arrays' content into an array of JSX elements.
