@@ -9,6 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import getSharingImage from '@jlengstorf/get-share-image'
 
 function SEO({canonical, description, lang, meta, keywords, title }) {
   const { site } = useStaticQuery(
@@ -26,6 +27,17 @@ function SEO({canonical, description, lang, meta, keywords, title }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
+
+    const socialImage = getSharingImage({
+        title: 'How to be a x developer',
+        tagline: 'Learn all the tips from this one post',
+        cloudName: 'rajatnegi',
+        imagePublicID: 'blog-img',
+        titleFont: 'Roboto',
+        titleExtraConfig: '_bold',
+        taglineFont: 'Roboto',
+      })
+    // const image = isBlogPost ? socialImage : seo.image
 
   return (
     <Helmet
@@ -71,6 +83,10 @@ function SEO({canonical, description, lang, meta, keywords, title }) {
         {
           name: `twitter:description`,
           content: metaDescription,
+        },
+        {
+          name: `twitter:image`,
+          content: {socialImage},
         },
       ]
         .concat(
