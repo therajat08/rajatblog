@@ -5,13 +5,13 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
 import getSharingImage from '@jlengstorf/get-share-image'
+import { graphql, useStaticQuery } from "gatsby"
+import PropTypes from "prop-types"
+import React from "react"
+import Helmet from "react-helmet"
 
-function SEO({canonical, description, lang, meta, keywords, title }) {
+function SEO({canonical, description, lang, meta, keywords, title, tagline }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -29,15 +29,15 @@ function SEO({canonical, description, lang, meta, keywords, title }) {
   const metaDescription = description || site.siteMetadata.description
 
     const socialImage = getSharingImage({
-        title: 'How to be a x developer',
-        tagline: 'Learn all the tips from this one post',
+        title: title,
+        tagline: tagline ? tagline : '',
         cloudName: 'rajatnegi',
         imagePublicID: 'blog-img.png',
         titleFont: 'Roboto',
         titleExtraConfig: '_bold',
         taglineFont: 'Roboto',
+        textColor: 'ffffff',
       })
-    // const image = isBlogPost ? socialImage : seo.image
 
   return (
     <Helmet
@@ -86,7 +86,7 @@ function SEO({canonical, description, lang, meta, keywords, title }) {
         },
         {
           name: `twitter:image`,
-          content: {socialImage},       
+          content: socialImage,
         }
       ]
         .concat(
