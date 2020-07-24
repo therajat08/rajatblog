@@ -32,7 +32,7 @@ function SEO({canonical, description, lang, meta, keywords, title }) {
         title: 'How to be a x developer',
         tagline: 'Learn all the tips from this one post',
         cloudName: 'rajatnegi',
-        imagePublicID: 'blog-img',
+        imagePublicID: 'blog-img.png',
         titleFont: 'Roboto',
         titleExtraConfig: '_bold',
         taglineFont: 'Roboto',
@@ -86,8 +86,8 @@ function SEO({canonical, description, lang, meta, keywords, title }) {
         },
         {
           name: `twitter:image`,
-          content: {socialImage},
-        },
+          content: {socialImage},       
+        }
       ]
         .concat(
           keywords.length > 0
