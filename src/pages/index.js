@@ -14,6 +14,7 @@ class IndexPage extends React.Component {
         <SEO
           title="Home"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
+          tagline="Personal Blog Rajat Negi"
         />
         <img style={{ margin: 0 }} src="./scene.gif" alt="Gatsby Scene" />
         <h1>
