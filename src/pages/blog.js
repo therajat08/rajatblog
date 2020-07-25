@@ -6,10 +6,15 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 import Button from "../components/button"
+import SearchPosts from "../components/searchPosts"//for searching
 
 class Blog extends React.Component {
   render() {
-    const { data } = this.props
+    //below lines for searching from thomas wang post
+    const { data, navigate, location } = this.props
+    const localSearchBlog = data.localSearchBlog
+
+    //const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMdx.edges
 
@@ -17,33 +22,14 @@ class Blog extends React.Component {
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="All posts" />
         <Bio />
-        <div style={{ margin: "20px 0 40px" }}>
-          {posts.map(({ node }) => {
-            const title = node.frontmatter.title || node.fields.slug
-            return (
-              <div key={node.fields.slug}>
-                <h3
-                  style={{
-                    marginBottom: rhythm(1 / 4),
-                  }}
-                >
-                  <Link
-                    style={{ boxShadow: `none` }}
-                    to={`/blog${node.fields.slug}`}
-                  >
-                    {title}
-                  </Link>
-                </h3>
-                <small>{node.frontmatter.date}</small>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: node.frontmatter.description || node.excerpt,
-                  }}
-                />
-              </div>
-            )
-          })}
-        </div>
+        {/*adding block from thomas wang search post*/}
+        <SearchPosts
+          posts={posts}
+          localSearchBlog={localSearchBlog}
+          navigate={navigate}
+          location={location}
+        />
+          
         <Link to="/">
           <Button marginTop="85px">Go Home</Button>
         </Link>
@@ -80,6 +66,10 @@ export const pageQuery = graphql`
           }
         }
       }
+    }
+    localSearchBlog {
+      index
+      store
     }
   }
 `
