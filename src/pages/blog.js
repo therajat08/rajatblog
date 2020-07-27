@@ -20,6 +20,9 @@ class Blog extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
+        <Link to="/">
+          <Button marginTop="40px" marginBottom="70px">Go Home</Button>
+        </Link>
         <SEO title="All posts" />
         <Bio />
         {/*adding block from thomas wang search post*/}
@@ -30,9 +33,6 @@ class Blog extends React.Component {
           location={location}
         />
           
-        <Link to="/">
-          <Button marginTop="85px">Go Home</Button>
-        </Link>
       </Layout>
     )
   }
