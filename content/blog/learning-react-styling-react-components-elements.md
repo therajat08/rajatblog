@@ -3,6 +3,7 @@ path: react-series/react-6
 date: 2020-07-21T08:03:32.112Z
 title: "Learning React: Styling React Components & Elements"
 description: "In this modules we learn how to style our components in different ways "
+canonical: https://thewebdev.tech/react-tutorials-5
 ---
 ## Setting Styles Dynamically
 
