@@ -2,7 +2,7 @@
 path: react-series/8
 date: 2020-08-02T07:50:58.550Z
 title: "Learning React: Debugging react apps"
-description: "Debugging "
+description: "Learning to Debug in various ways"
 ---
 ## Handling simple error
 Let's try to introduce an error in our program and see how it can be handled.
@@ -49,3 +49,81 @@ Upon inspection we see that our `userid` is undefined and hence the comparison `
 ## Working with react developer tools
 To make debugging even better while developing react apps, we can use **React Developer tools** browser extension. It provides some additional debugging tools. For more you can see [Faviocopes post](https://flaviocopes.com/react-developer-tools/).
 
+## Using Error Boundaries
+Sometime we know that a part of our code may not work as intended. And if that happens we wish to generate a nice custom message to the user for better explanation. 
+So let's introduce a random error in our code to simulate such situation. We add following line to Food.js:
+
+```diff
+  const food = (props)=>{
++    const rnd = Math.random();
++    if(rnd > 0.7){
++      throw new Error('Something went wrong');
++    }
+    return( 
+      <div className={ moduleClasses.Food }> 
+        <p onClick={props.click}>Some nutritional information! of food: {props.name} containing vitamin {props.vitamin} </p>
+        <p>{props.children}</p>
+        <input type="text" onChange={props.changed} value={props.name}/>
+      </div>	
+    )
+  };
+
+```
+What this new code does is basically generates a random number using `Math.random` and if it is greater than 0.7 we get an error message. In other words there is a 30% chance that we will get an error. If we run this code we can see an error ocurring occasionally.
+
+![](https://ik.imagekit.io/18dkv5g43j/React_udemy/6/random-error_SMVuotRtv.png)
+
+Now we will try to handle this error with a separate component. We name it `./ErrorBoundary/ErrorBoundary.js`. This type of error handling was introduced in React 16+. Now what we will do is make a component that will wrap our `Food` component. And if an error occurs the thrown error is caught by this component. And from this component we can handle it the way we want. 
+It contains:
+
+```js
+import React, {Component} from 'react';
+
+class ErrorBoundary extends Component {
+  state = {
+    hasError : false,
+    errorMessage: ''
+  }
+  
+  componentDidCatch = (error,info)=>{
+    this.setState({hasError: true, errorMessage:'Mayday Mayday'});
+  }
+
+  render(){
+    if(this.state.hasError){
+      return <h1>{this.state.errorMessage}</h1>;
+    }
+    else{
+      return this.props.children;
+    }
+  }
+}
+
+export default ErrorBoundary;
+```
+Wrapping in App.js
+```diff
+    if(this.state.showFoods)
+    {
+      foods =(
+        <div>
+          {this.state.food.map(( food , index)=>{
++            return <ErrorBoundary key = {food.id}><Food
+                  click = {()=>this.deleteFoodHandler(index)}
+                  name={food.name}
+                  vitamin={food.vitamin}
+                  key = {food.id}
+                  changed = {(event) => this.nameChangedHandler(event, food.id)}/>
++              </ErrorBoundary>
+          })}
+        </div>
+      );
+
+```
+
+
+As we can see if error is thrown it the `componentDidCatch` method is executed and error status is made true by `hasError:true`. And inside `render()`, if `hasError` is true a nice error message 'Mayday Mayday'. Else, our component is rendered normally.
+
+![](https://ik.imagekit.io/18dkv5g43j/React_udemy/6/error-boundary_8GG4Q4fKq.gif)
+
+As you can see the error is generated randomly and we display what we intend to convey to the user. This type of handling should only be where we think something might go wrong. Hence we can't blindly wrap everthing in it.
