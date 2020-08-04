@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Button from "../components/button"
+import Home from './home.mdx'
 
 class IndexPage extends React.Component {
   render() {
@@ -17,19 +18,10 @@ class IndexPage extends React.Component {
           tagline="Personal Blog Rajat Negi"
         />
         <img style={{ margin: 0 }} src="./scene.gif" alt="Gatsby Scene" />
-        <h1>
-          Hey people{" "}
-          <span role="img" aria-label="wave emoji">
-            👋
-          </span>
-        </h1>
-        <p>Welcome to my new home on the internet. You are on the home page.</p>
-        <p>
-          My name is Rajat, a final year grad student.  
-        </p>
-        <p>Check out my blog!</p>
-        <Link to="/blog/">
-          <Button marginTop="35px">Go to Blog</Button>
+        <Home style={{ textDecoration: 'none' }}/>
+        { /*<p>Check out my blog!</p>*/}        
+          <Link to="/blog/">
+          <Button marginTop="35px">Read all articles</Button>
         </Link>
       </Layout>
     )

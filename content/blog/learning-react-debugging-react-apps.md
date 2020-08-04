@@ -15,7 +15,7 @@ In out `nameChangeHandler` we do this change:
     ...
 ```
 
-Now, when we reload nothing seems to be wrong, but when we type in the text field, error occurs. The error message will appear in both inspect window and our webpage.We start looking from the top-most error. We get `TypeError: event.input is undefined`. So clearly this part needs to be corrected. we can easily search for event documentation to find what properties it has and which one serves our pupose. 
+Now, when we reload nothing seems to be wrong, but when we type in the text field, error occurs. The error message will appear in both inspect window and our webpage.We start looking from the top-most error. We get `TypeError: event.input is undefined`. So clearly this part needs to be corrected. we can easily search for event documentation to find what properties it has and which one serves our purpose. 
 
 ![](https://ik.imagekit.io/18dkv5g43j/React_udemy/6/simple-error_YDvv1ReRm.png)
 
@@ -126,4 +126,6 @@ As we can see if error is thrown it the `componentDidCatch` method is executed a
 
 ![](https://ik.imagekit.io/18dkv5g43j/React_udemy/6/error-boundary_8GG4Q4fKq.gif)
 
-As you can see the error is generated randomly and we display what we intend to convey to the user. This type of handling should only be where we think something might go wrong. Hence we can't blindly wrap everthing in it.
+As you can see the error is generated randomly and we display what we intend to convey to the user. This type of handling should only be where we think something might go wrong. Hence we can't blindly wrap everything in it.
+
+

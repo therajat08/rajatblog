@@ -126,7 +126,7 @@ code change:
 
 ## Using Radium for Media Querries
 
-We can even use media querries and keyframes usig Radium. However for using them we need anothe component. **StyleRoot**. This can be imported from Radium only. Also we need to wrap our App div in StyleRoot tag in App.js.
+We can even use media queries and keyframes using Radium. However for using them we need another component. **StyleRoot**. This can be imported from Radium only. Also we need to wrap our App div in StyleRoot tag in App.js.
 
 ```diff
   // Food.js
