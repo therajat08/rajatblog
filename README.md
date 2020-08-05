@@ -5,7 +5,7 @@
 
   <p align="center">
     <a href="https://www.rajat.link">
-      <img src = "https://ik.imagekit.io/18dkv5g43j/Blog/twitter_card/logo3-1-800_osqOE387B.png"
+      <img src = "https://ik.imagekit.io/18dkv5g43j/Blog/twitter_card/logo3-1-800_osqOE387B.png">
     </a>
   </p>
 
