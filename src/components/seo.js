@@ -36,7 +36,7 @@ function SEO({canonical, description, lang, meta, keywords, title, tagline }) {
         titleFont: 'Roboto',
         titleExtraConfig: '_bold',
         taglineFont: 'Roboto',
-        textColor: 'ffffff',
+        textColor: '000000',
       })
 
   return (
