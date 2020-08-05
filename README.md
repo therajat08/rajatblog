@@ -1,6 +1,7 @@
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
-[![GitHub contributors](https://img.shields.io/github/contributors/cdnjs/cdnjs.svg?style=flat)]()  
+[![Generic badge](https://img.shields.io/badge/Contributors-2-<COLOR>.svg)](https://shields.io/)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
 
 Rajat's personal website running on Gatsby, React and Node.js.
 
