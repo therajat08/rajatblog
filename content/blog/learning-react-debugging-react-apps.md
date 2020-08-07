@@ -3,6 +3,7 @@ path: react-series/8
 date: 2020-08-02T07:50:58.550Z
 title: "Learning React: Debugging react apps"
 description: "Learning to Debug in various ways"
+canonical: https://thewebdev.tech/react-tutorials-7
 ---
 ## Handling simple error
 Let's try to introduce an error in our program and see how it can be handled.
@@ -15,7 +16,7 @@ In out `nameChangeHandler` we do this change:
     ...
 ```
 
-Now, when we reload nothing seems to be wrong, but when we type in the text field, error occurs. The error message will appear in both inspect window and our webpage.We start looking from the top-most error. We get `TypeError: event.input is undefined`. So clearly this part needs to be corrected. we can easily search for event documentation to find what properties it has and which one serves our purpose. 
+Now, when we reload nothing seems to be wrong, but when we type in the text field, error occurs. The error message will appear in both inspect window and our webpage.We start looking from the top-most error. We get `TypeError: event.input is undefined`. So clearly this part needs to be corrected. We can easily search for event documentation to find what properties it has and which one serves our purpose. 
 
 ![](https://ik.imagekit.io/18dkv5g43j/React_udemy/6/simple-error_YDvv1ReRm.png)
 
@@ -69,7 +70,7 @@ So let's introduce a random error in our code to simulate such situation. We add
   };
 
 ```
-What this new code does is basically generates a random number using `Math.random` and if it is greater than 0.7 we get an error message. In other words there is a 30% chance that we will get an error. If we run this code we can see an error ocurring occasionally.
+What this new code does is basically generates a random number using `Math.random` and if it is greater than 0.7 we get an error message. In other words there is a 30% chance that we will get an error. If we run this code we can see an error occurring occasionally.
 
 ![](https://ik.imagekit.io/18dkv5g43j/React_udemy/6/random-error_SMVuotRtv.png)
 
@@ -128,4 +129,8 @@ As we can see if error is thrown it the `componentDidCatch` method is executed a
 
 As you can see the error is generated randomly and we display what we intend to convey to the user. This type of handling should only be where we think something might go wrong. Hence we can't blindly wrap everything in it.
 
-
+## What we learned
+  * Handling simple errors
+  * Handling logical errors
+  * Working with React developer tools
+  * Using error boundary component

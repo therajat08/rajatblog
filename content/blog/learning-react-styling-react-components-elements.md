@@ -4,7 +4,7 @@ date: 2020-07-21T08:03:32.112Z
 title: "Learning React: Styling React Components & Elements"
 description: "In this modules we learn how to style our components in different ways "
 tagline: 'Learn to use Radium and CSS Modules'
-canonical: https://thewebdev.tech/react-tutorials-5
+canonical: https://thewebdev.tech/react-tutorials-6
 ---
 ## Setting Styles Dynamically
 
@@ -206,3 +206,9 @@ Refer to the CSS [here](#css).
     )
   };
 ```
+
+
+## What we learned:
+  * Styling components dynamically
+  * Adding and using Radium
+  * Using CSS modules
