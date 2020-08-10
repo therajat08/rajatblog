@@ -32,3 +32,4 @@ Similarly vim has a **Wrong word** list. They are treated as misspelled. And aga
 
 Note: Try not to keep a word in both good and wrong list. It is either good or bad; nohing in between.
 
+![](https://ik.imagekit.io/18dkv5g43j/Blog/vim-spell/spell2_8xtjzfkRE.gif)
