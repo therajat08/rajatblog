@@ -8,6 +8,8 @@ description: Built in spell checking in VIM
 
 I recently discovered this neat feature that VIM have. So basically you can do a spell check on your document from within vim. You don't even need a plugin for this. It is a built in feature.
 
+YouTube Tutorial : [ VIM built in feature: Spell checking ](https://www.youtube.com/watch?v=pqBS9TtZIBA)
+
 For this all you need is this command 
 ```
 :set spell!
@@ -33,3 +35,4 @@ Similarly vim has a **Wrong word** list. They are treated as misspelled. And aga
 Note: Try not to keep a word in both good and wrong list. It is either good or bad; noting in between.
 
 ![](https://ik.imagekit.io/18dkv5g43j/Blog/vim-spell/spell2_8xtjzfkRE.gif)
+
