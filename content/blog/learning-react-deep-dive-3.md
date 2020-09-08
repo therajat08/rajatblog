@@ -4,244 +4,176 @@ date: 2020-09-04T10:03:21.606Z
 title: "Learning React: Deep Dive 3"
 description: Place holder
 ---
-## Higher Order Components 
-Its a convention to name HOC with a '**With**' in at the beginning of its name. With HOC we have components that wraps other components and adds additional functionality like exception handling, http logic etc. 
 
-## Another form of HOCs
-There is a **second** way of making HOCs. This way does not work by returning a functional component but instead by using a regular javascript function. We make a function called `withClass.js` (note lower case meaning it's not a component). This function will take a component as an argument and also second argument which will be needed for our logic(which will depend on function of our component ). It looks like:
+## A better project structure
+For making a better structure, we have to decide what should go into its own component and what should be a higher order component like the root components we have that wraps  other components.
+We can make certain changes to our application. Like make a components for the list of foods. Also, we can make a `cockpit` component(containing parts of return method of container `App.js`).
+Now it make sense to have separate folders for components, assets(containing resources like images), and container(higher order components)
+Typically, the container components or that manages state, like App.js should not contain much of UI code.
 
-```js
-//withClass
-import React from 'react';
-
-const withClass = (WrappedComponent, className) =>{
-  return props=>(
-    <div className={className}>
-      <WrappedComponent/>
-    </div>
-  );
-}; 
-export default withClass;
-```
-To use this in our App, first we need to wrap our JSX in the `<Aux>`  tag made before. Then import the above class. Lastly while exporting we call  `withClass()` with App (a component) as **first argument** and moduleClass.App (css class )  as **second argument**. 
+Now our folder structure looks like:
+![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/folder-structure_SaHruXhuL.png)
 
 
-```js
-//App.js
+## Comparing Stateless and Stateful 
+What is a stateful component?
 
-import withClass from '../hoc/withClass.js';
+It is a component that manages state. Mainly they are class based components. 
+Now a functional component that manages its own state with the useState would of course also be a stateful component, so stateful does not automatically mean class-based component, though historically this has been the case because React hooks like useState are a really new feature. Still since React 16.8, stateful is not automatically a class-based component. It is a component that manages state, Presentational, also called dumb or stateless components historically have always been functional components because prior to React16.8, these functional components could not manage state.
 
-    ...
+What is a Stateless or presentational component? 
 
-    <Aux>
-      <button
-        onClick={()=>{
-          this.setState({showCockpit: false});
-        }}
-      >
-        Remove Cockpit
-      </button>
-      {this.state.showCockpit ? (
-        <Cockpit
-        title  = {this.props.appTitle}
-        showFoods={this.state.showFoods}
-        foodLength = {this.state.food.length}
-        clicked={this.toggleFoodHandler}
-            />
-      ) : null }
-      {foods}
-    </Aux>
-    ...
+It is a functional component that does not manage state. Even though you could with useState, it is still a good practice to restrict yourself to a couple of components that are involved in the state management and of course, which depends on how big our app is. majority of your components should be presentational, stateless components. Because that keeps your app manageable as we have predictable flow of data. 
 
-export default  withClass(App, moduleClass.App) ;
-```
-### Which method to use?
-This depends on us. But mainly when adding some javascript  logic like sending analytics we use second method.
+## Class based v Functional Components
+Its is important to know what kind of properties a component has and what they can do. These differ when it comes to managing state and lifecycle hooks. 
 
-## Passing Unknown Props
-Our wrapped component is missing its props.We can pass props dynamically. 
+* class-based components can manage state and have access to lifecycle hooks. 
+* in function based components it gets a bit tricky as with introduction of 'React hooks' they can manage state but they can't change 'Lifecycle hooks'
 
-To bring back the styling of our food components we can wrap `food.js` in **withClass** and use spread operator in `withClass.js` to pass the props. 
+Note that 'Lifecycle hooks ' and 'React hooks' aren't the same things. 
 
-```diff
-//withClass.js
-const withClass = (WrappedComponent, className) =>{
-  return props=>(
-    <div className={className}>
-+      <WrappedComponent {...props}/>
-    </div>
-  );
-}; 
-```
+* class-based components need 'this' keyword while in we use 'props' in other type of components
 
+![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/class-v-function_S_-RCVYQc.png)
 
-## Setting state correctly
-(only for class-based components). We are setting state correctly but we may do it incorrectly. Let we want to count the number of changes we make in our text field. For this we make a new property : **changeCounter**. So after every keystroke and deletion this counter should increment.
+## Component Lifecycle
+First thing to note is that this is only available in class-based components. Functional based have something equivalent with React-Hooks. 
 
-For this to work we make changes in **nameChangedHandler**. We may start by using this code:
+Here we have certain methods that react will run for us. They run at different points of time and in certain order. 
 
+![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/component-lifecycle_RDx3bIPLw.png)
+
+Lets start with methods used while component creation. 
+
+* First thing we have is **constructor(props)**. It is mainly for basic initialization. 
+  * We need to call `super(props)` if we are using it
+  * Shouldn't cause any side-effects from here like making HTTP calls
+* Next is **getDerivedStateFromProps(props,state)**. It is very rarely use. In some scenario where props of our component can change and then we want to update some internal state if that component, then it will be used. 
+* Next is our **render()** method. Other child components are rendered after this.
+* The creation lifecycle ends when **componentDidMouunt()** is called after. 
+  * Here we *can* we can cause side effects meaning we can do stuff like make HTTP calls.   
+  * Don't change state or call setState here. As it triggers render again. 
+
+  ![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/creation-life-cycle_aeGKxn8sa.png)
+
+Now let's try and execute these functions. 
+
+### constructor
+In constructor we can initialize our state. Behind the scenes this is actually what happens.
 
 ```js
-  nameChangedHandler = (event, id) => {
-    ...
-
-    this.setState({
-          food : foods,
-          changeCounter : prevState.changeCounter +1
-      
-    }); 
-  }
-```
-
-This code will work and the counter will seem to change properly. But this is the wrong way of updating. The setState does not immediately trigger an update of the state, instead it is scheduled by react. And performs update when it has the resources available. Due to this reason the state we are changing with this code might not be the latest or isn't guaranteed.   
-
-To correct this, our setState can also take a function as argument. This function will take prevState or previous state as argument. Here it is guaranteed that this will be the previous state that we expected.  
-
-```js
-  nameChangedHandler = (event, id) => {
-    ...
-
-    this.setState((prevState,props)=>{
-      return{
-          food : foods,
-          changeCounter : prevState.changeCounter +1
-      };
-    }); 
-  }
-```
-
-This code will perform same as previous approach but is the **right way**.
-
-![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/correct-way-of-setState_3f9EPz5vY.gif)
-
-## Using Prototypes
-Now we will learn to improve the way of receiving Props. Works in both functional and class-bases components. 
-
-Our Current way is fine but suppose we want to distribute or share our code then it won't be easy for them to tell what kind of props to add. Or the nature of already present props.
-
-This can be done by installing a package with command:
-
-`npm install --save prop-types`
-
-We need to import it ofcourse. And now we can specify the data type our props. By doing this if we accidentally at incorrect data a **warning** will be shown. 
-
-Changes made in Food.js component:
-
-```js
-import PropTypes from 'prop-types';
-
-...
-
-Food.propTypes = {
-  click: PropTypes.func, 
-  name: PropTypes.string,
-  vitamin: PropTypes.string,
-  changed: PropTypes.func
-};
-
-export default withClass(Food,moduleClasses.Food );
-```
-**propTypes** is a special property that we add to component object and react will look after in development mode. And give warning if we pass incorrect props.
-
-Now if i deliberately add incorrect data  in our `App.js`, a warning arises.
-
-
-```js
-// incorrect addition
-      ...
-      {id : 'asf1', name: 'Orange', vitamin: 2},	// here
-      {id : 'asf2', name: 'Banana', vitamin: 'B6'},	
-      {id : 'asf3', name: 'Lemon', vitamin: 'C'}	
-      ...
-```
-
-![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/propTypes_A29T9nBm1.png)
-
-## Using Refs
-Let's say when our app is rendered we want focus to be on third text-Field. 
-React makes it easy for us to  select elements. 
-**ref** like 'key' is a special property that can be passed to any component. 
-
-ref can be used in a number of ways.Here is one used in earlier versions of React 
-
-```diff
-//Food.js
-
-  componentDidMount(){
-+   this.inputElement.focus();
+  constructor(props){
+    super(props);
+    console.log('App.js constructorj');
   }
 
-...
-  <input 
-    key = "i3"
-+   ref={(inputEl) => {this.inputElement = inputEl}}
-    type="text" 
-    onChange={this.props.changed} 
-    value={this.props.name}
-  />
-
 ```
-More modern approach(since React 16.3):
+### getDerivedStateFromProps
+We need to add static keyword here. We should return the updated state here.
 
-```diff
-+  constructor(props){
-+    super(props);
-+    this.inputElementRef = React.createRef();
-+  }
+```js
+static getDerivedStateFromProps(props, state){
+  console.log('App.js getDerivedStateFromProps', props);
+  return state;
+}
+```
+### render
+Now the render method executes. After it all the child components will be run. We can see the lifecycle running there too.
 
-  componentDidMount(){
-+    this.inputElementRef.current.focus();
-  }
 
+```js
+
+render(){
+  console.log('App.js render');
+  
   ...
-  <input 
-    key = "i3"
-+   ref = { this.inputElementRef }
-    type="text" 
-    onChange={this.props.changed} 
-    value={this.props.name}
-  />
-  ...
-
+}
 ```
+### componentDidMount
+Next this method will run 
 
-As we can see the focus is shifted as intended:
-![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/ref_2LJuIw7zn.png)
+```js
+componentDidMount(){
+  console.log('App.js componentDidMount');
+}
+```
+We can see the order of execution in inspector window.
 
-## Refs with React Hooks
-Now we will try and use refs in function based components. We will use a hook **useRef**. 
+![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/lifecycle-code_et0r8adT7.png)
 
-Let's say every time the app is rendered we want our food components to be toggled or the button to be pressed by default. For this we will store the reference in a variable `toggleBtnRef` and later access it to click the button in `useEffect()`. 
+## Component Lifecycle - Update
+Just like there is Lifecycle for component creation there is also for updating.  
 
-changes made in Cockpit.js:
+* First we have **getDerivedStateFromProps(props,state)**. This is used to sync our local state inside of the component to the props we are getting. Shouldn't cause any side-effects here. 
+* **shouldComponentUpdate(nextProps, nextState)** This is used for performance optimization. It can **block** an update and should be used carefully. 
+* **render()** and updating Child Component Props. 
 
-```diff
+![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/update-cycle_bxnDTwuyn.png)
 
-+  import React, { useEffect, useRef } from 'react';
+* **getSnapshotBeforeUpdate(prevProsp,prevState)** - this method can be used to take a snapshot of state before update.
 
-+  const toggleBtnRef = useRef(null);
+* Lastly **componentDidUpdate()** runs indicating that update is complete. Make sure to not cause any infinite loop here or something that might cause unnecessary re-render. 
 
-   useEffect(()=>{
-+    toggleBtnRef.current.click();
-     return()=>{
-       console.log('Cockpit.js cleanup work in useEffect');
-     };
-   }, []);
+Now we need convert some of our function-based components to class-based components to use lifecycle methods. 
 
-   ...
+To show the cycle changes made in Foods.js after converting it to class-based component.
 
-    <button 
-+      ref = {toggleBtnRef}
-      className={btnClass}
-      onClick={props.clicked}>Switch </button>
+```js
 
+    static getDerivedStateFromProps(props, state){
+      console.log("Foods.js getDerivedStateFromProps");
+      return state;
+    }
+
+    shouldComponentUpdate(nextProps,nextState){
+      console.log("Foods.js shouldComponentUpdate");
+      return true;
+    }
+
+  getSnapshotBeforeUpdate(prevProps,prevState){
+    console.log("Foods.js SnapShotBeforeUpdate");
+    return null;
+  }
+  
+  componentDidUpdate(){
+    console.log("Foods.js componentDidUpdate");
+  }
+
+  render(){
+    console.log('Foods.js rendering...');
     ...
+  }
 ```
+Inspector window :
+
+![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/update-code_LPkb69G4Nu.png)
+
+
+## Using useEffect() in functional components
+Here we will import React-hooks. It is the second most important **React-hook** next to useState(). It is sort of combined effect of `comPonentDidMount` and `componentDidUpdate`. 
+Our `Cockpit.js ` is still a functional component. We can implement it there.
+
+```js
+const cockpit = (props) => {
+    useEffect(()=>{
+      console.log('Cockpit.js useEffect');
+    })
+    ...
+  }
+```
+Whenever the app is re-rendered this method is called.
+
+Inspector window:
+
+![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/useEffect_zHyVnzVOR.png)
+
+### Controlling useEffect() behaviour
+The method is running a lot of times. Let we want to send a HTTP request only when component first renders. To mimic this behaviour we use `setTimeout()`. And there is a shortcut to only run it on first render using an empty array as second argument of useEffect. In this array we basically tell the dependencies of the method. When empty the dependencies don't change hence it only runs once.
+
+![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/alert_mUYEBOB9L.png)
 
 ## What we learned
-
-* Higher order components
-* Correct way of setting state
-* Using propTypes
-* Using refs
-
+* Stateless and stateful comparison
+* Class based and Functional components
+* Component Lifecycle
