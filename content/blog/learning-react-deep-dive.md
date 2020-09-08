@@ -13,7 +13,6 @@ Typically, the container components or that manages state, like App.js should no
 Now our folder structure looks like:
 ![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/folder-structure_SaHruXhuL.png)
 
-## Splitting app into components
 
 ## Comparing Stateless and Stateful 
 What is a stateful component?
@@ -171,4 +170,9 @@ Inspector window:
 ### Controlling useEffect() behaviour
 The method is running a lot of times. Let we want to send a HTTP request only when component first renders. To mimic this behaviour we use `setTimeout()`. And there is a shortcut to only run it on first render using an empty array as second argument of useEffect. In this array we basically tell the dependencies of the method. When empty the dependencies don't change hence it only runs once.
 ![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/alert_mUYEBOB9L.png)
+
+## What we learned
+* Stateless and stateful comparison
+* Class based and Functional components
+* Component Lifecycle
 

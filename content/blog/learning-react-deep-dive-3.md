@@ -4,7 +4,7 @@ date: 2020-09-04T10:03:21.606Z
 title: "Learning React: Deep Dive 3"
 description: Place holder
 ---
-## Higher Order Components - Intro
+## Higher Order Components 
 Its a convention to name HOC with a '**With**' in at the beginning of its name. With HOC we have components that wraps other components and adds additional functionality like exception handling, http logic etc. 
 
 ## Another form of HOCs
@@ -59,9 +59,21 @@ export default  withClass(App, moduleClass.App) ;
 This depends on us. But mainly when adding some javascript  logic like sending analytics we use second method.
 
 ## Passing Unknown Props
-Wrapped component missing its props. Can pass prosp dynamically. 
+Our wrapped component is missing its props.We can pass props dynamically. 
 
 To bring back the styling of our food components we can wrap `food.js` in **withClass** and use spread operator in `withClass.js` to pass the props. 
+
+```diff
+//withClass.js
+const withClass = (WrappedComponent, className) =>{
+  return props=>(
+    <div className={className}>
++      <WrappedComponent {...props}/>
+    </div>
+  );
+}; 
+```
+
 
 ## Setting state correctly
 (only for class-based components). We are setting state correctly but we may do it incorrectly. Let we want to count the number of changes we make in our text field. For this we make a new property : **changeCounter**. So after every keystroke and deletion this counter should increment.
@@ -226,7 +238,10 @@ changes made in Cockpit.js:
     ...
 ```
 
-## Understanding prop chain problems
+## What we learned
 
-## Using context  API
+* Higher order components
+* Correct way of setting state
+* Using propTypes
+* Using refs
 

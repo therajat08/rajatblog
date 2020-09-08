@@ -112,7 +112,7 @@ App functioning will be same and behind the scene it is made sure that every pro
 
 ![](https://ik.imagekit.io/18dkv5g43j/React_udemy/7/dom-update_IRPXS5FtF.png)
 
-## Rendering Adjacent JSX elemets 
+## Rendering Adjacent JSX elements 
 We understood it before that we have to export just one **root** JSX element from a component. That one can contain other JSX elements inside it. However, we can work our way around this by returning an array of elements. We will still be returning a single object or array in this case. We just need to make sure there is a key so that react can efficiently update and reorder these elements. 
 
 Let's bring this functionality in Food.js:
@@ -178,3 +178,8 @@ Since React 16.2, there is in-built `<Aux>` like component called **Fragment**. 
     // JSX elements/tags
   </React.Fragment>
 ```
+## What we learned
+* Cleaning up 
+* Optimization with shouldComponentUpdate and with React.memo()
+* Adjacent JSX elements
+ Using React Fragments
