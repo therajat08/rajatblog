@@ -3,6 +3,7 @@ path: react-series/8
 date: 2020-08-07T14:51:36.643Z
 title: "Learning React: Deep Dive"
 description: Deeper diving into react internals and components
+canonical: https://thewebdev.tech/react-tutorials-8
 ---
 ## A better project structure
 For making a better structure, we have to decide what should go into its own component and what should be a higher order component like the root components we have that wrap  other components.
