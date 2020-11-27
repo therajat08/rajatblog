@@ -10,6 +10,8 @@ So I recently started using the browser called **Qute-Browser**. For someone lik
 
 So I have seen people quoting it as a browser for "power-users". Which is kinda true. Like vim it takes some time getting used to it. But i think for someone to stumble upon something like this, you definitely would have to be a vim user already. Cos once you get the taste of vim, there is no coming back. 
 
+![](https://ik.imagekit.io/18dkv5g43j/Blog/qute-brwser/qute_HlUTBOdycS1.png)
+
 ### How i discovered  it?
 Well like any other case, i was feeling that i have to move around too much to work with my browser. So a "vim like browser" search it was. Already youtubers like Luke Smith and other linux enthusiast had videos on it. So i had to try it. 
 
@@ -48,7 +50,6 @@ So i have integrated qute with pywal. With this integration the browser colorsch
 It is a tool that can be used to create a consistent colorscheme for your system. Colorscheme is based on the wallpaper set. For more pywal.
 This is how it looks now, with the inbuilt dark mode.
 
-![]
 
 For this just follow the instructions [here](https://gitlab.com/jjzmajic/qutewal) and give a star to the repository. 
 
